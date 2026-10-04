@@ -1,10 +1,5 @@
 import java.util.*;
 
-// Problem: many aircraft share one runway. If every pilot had to talk to every
-// other pilot to decide who lands first, each plane would need references to all
-// the others and the coordination logic would be duplicated everywhere.
-// Solution: planes only talk to a ControlTower (the mediator), which decides.
-
 interface Tower {
     void requestLanding(Aircraft a);
     void landed(Aircraft a);
@@ -12,7 +7,7 @@ interface Tower {
 
 class Aircraft {
     final String name;
-    private final Tower tower; // the ONLY thing a plane knows about
+    private final Tower tower; 
 
     Aircraft(String name, Tower tower) { this.name = name; this.tower = tower; }
 
@@ -36,7 +31,7 @@ class ControlTower implements Tower {
     public void landed(Aircraft a) {
         onRunway = null;
         Aircraft next = holding.poll();
-        if (next != null) requestLanding(next); // give the runway to the next in line
+        if (next != null) requestLanding(next); 
     }
 }
 
