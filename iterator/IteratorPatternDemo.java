@@ -43,7 +43,6 @@ class CloudCatalog implements Iterable<Song> {
 }
 
 public class IteratorPatternDemo {
-    // The player knows nothing about arrays or APIs.
     static void play(Iterable<Song> songs, int limit) {
         int n = 0;
         for (Song s : songs) {
