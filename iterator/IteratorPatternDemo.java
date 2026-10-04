@@ -1,5 +1,8 @@
 import java.util.*;
 
+// Problem: songs live in different structures (array vs. paginated remote API),
+// but the player should loop over them the same way, without loading everything.
+
 record Song(String title) {}
 
 class LocalLibrary implements Iterable<Song> {
@@ -18,7 +21,7 @@ class LocalLibrary implements Iterable<Song> {
 class CloudCatalog implements Iterable<Song> {
     int requests = 0;
 
-    List<Song> fetchPage(int page) { 
+    List<Song> fetchPage(int page) { // fake API: 50,000 songs, 10 per page
         requests++;
         List<Song> out = new ArrayList<>();
         for (int i = page * 10; i < Math.min(page * 10 + 10, 50_000); i++) out.add(new Song("Cloud " + i));
